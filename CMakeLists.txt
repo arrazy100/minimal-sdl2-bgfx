@@ -6,7 +6,8 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(SDL2 REQUIRED)
 
 add_subdirectory(bgfx.cmake)
-include_directories(bgfx/include)
+add_subdirectory(shader)
 
-add_executable(sdl_bgfx_minimal main.cpp)
-target_link_libraries(sdl_bgfx_minimal bx bgfx SDL2::Main)
+add_executable(${PROJECT_NAME} main.cpp)
+target_include_directories(${PROJECT_NAME} PUBLIC include/shaders)
+target_link_libraries(${PROJECT_NAME} bx bgfx SDL2::Main)
